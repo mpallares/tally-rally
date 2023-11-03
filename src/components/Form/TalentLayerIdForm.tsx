@@ -18,6 +18,8 @@ import { createWeb3mailToast } from '../../modules/Web3mail/utils/toast';
 
 interface IFormValuesTalentLayerId {
   handle: string;
+  email: string;
+  skills: any[];
 }
 
 interface IFormValuesEmail {
@@ -31,6 +33,8 @@ interface IFormValuesInterests {
 
 const initialValuesTalentLayerId: IFormValuesTalentLayerId = {
   handle: '',
+  email: '',
+  skills: [],
 };
 
 const initialValuesEmail: IFormValuesEmail = {
