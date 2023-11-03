@@ -88,6 +88,8 @@ function TalentLayerIdForm() {
         if (process.env.NEXT_PUBLIC_ACTIVE_DELEGATE_MINT === 'true') {
           const response = await delegateMintID(
             chainId,
+            submittedValues.email,
+            submittedValues.skills,
             submittedValues.handle,
             String(handlePrice),
             account.address,

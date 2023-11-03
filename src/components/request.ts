@@ -116,6 +116,8 @@ export const delegateMintReview = async (
 
 export const delegateMintID = async (
   chainId: number,
+  email: string,
+  skills: any[],
   handle: string,
   handlePrice: string,
   userAddress: string,
