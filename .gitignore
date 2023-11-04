@@ -29,3 +29,6 @@ dist-ssr
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+cache
+artifacts

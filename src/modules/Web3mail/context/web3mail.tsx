@@ -38,6 +38,8 @@ const Web3MailProvider = ({ children }: { children: ReactNode }) => {
   const [protectedEmail, setProtectedEmail] = useState<ProtectedData | undefined>();
   const [emailGrantedAccess, setEmailGrantedAccess] = useState<GrantedAccess | undefined>();
 
+  console.log('account', account);
+
   log('Web3MailProvider ---- call', {
     dataProtector,
     account,
