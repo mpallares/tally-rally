@@ -146,6 +146,7 @@ const Web3MailProvider = ({ children }: { children: ReactNode }) => {
         protectedEmail,
         email,
       });
+      console.log('protectedData', protectedData);
 
       if (!dataProtector) {
         console.error(
@@ -153,6 +154,7 @@ const Web3MailProvider = ({ children }: { children: ReactNode }) => {
         );
         return;
       }
+      console.log('here');
 
       let newProtectedEmail;
       if (!emailIsProtected) {

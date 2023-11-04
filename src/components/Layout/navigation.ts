@@ -12,7 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 export const navigation = [
-  // { name: 'My board', href: '/dashboard', icon: UserIcon, current: false },
+  { name: 'My board', href: '/dashboard', icon: UserIcon, current: false },
   { name: 'Earn', href: '/dashboard/earn', icon: CurrencyDollarIcon, current: false },
   { name: 'Race', href: '/dashboard/messaging', icon: PlayIcon, current: false },
   { name: 'Talents', href: '/dashboard/talents', icon: UserGroupIcon, current: false },

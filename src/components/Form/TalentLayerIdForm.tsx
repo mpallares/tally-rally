@@ -15,6 +15,7 @@ import { HandlePrice } from './HandlePrice';
 import SubmitButton from './SubmitButton';
 import Web3MailContext from '../../modules/Web3mail/context/web3mail';
 import { createWeb3mailToast } from '../../modules/Web3mail/utils/toast';
+import { toast } from 'react-toastify';
 
 interface IFormValuesTalentLayerId {
   handle: string;
@@ -24,7 +25,7 @@ interface IFormValuesTalentLayerId {
 
 interface IFormValuesEmail {
   email: string;
-  consentInfo: string[];
+  consentInfo?: string[];
 }
 
 interface IFormValuesInterests {
@@ -55,6 +56,8 @@ function TalentLayerIdForm() {
   const publicClient = usePublicClient({ chainId });
   const talentLayerClient = useTalentLayerClient();
   const { calculateMintFee } = useMintFee();
+  const { user } = useContext(TalentLayerContext);
+  const { protectEmailAndGrantAccess, emailIsProtected } = useContext(Web3MailContext);
 
   const validationSchemaTalentLayerId = Yup.object().shape({
     handle: Yup.string()
@@ -69,7 +72,7 @@ function TalentLayerIdForm() {
 
   const validationSchemaEmail = Yup.object().shape({
     email: Yup.string().email('Invalid email address').required('Email is required'),
-    consentInfo: Yup.array().of(Yup.string()).min(1, 'Select at least one consent option'),
+    // consentInfo: Yup.array().of(Yup.string()).min(1, 'Select at least one consent option'),
   });
 
   const validationSchemaInterests = Yup.object().shape({
@@ -129,7 +132,26 @@ function TalentLayerIdForm() {
   const onSubmitEmail = async (
     submittedValues: IFormValuesEmail,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
-  ) => {};
+  ) => {
+    if (user && walletClient && publicClient) {
+      try {
+        const promise = protectEmailAndGrantAccess(submittedValues.email);
+
+        console.log('promise', promise);
+
+        await toast.promise(promise, {
+          pending: 'Pending transactions, follow instructions in your wallet',
+          success: 'Access granted succefully',
+          error: 'An error occurred while granting access',
+        });
+        setSubmitting(false);
+      } catch (error) {
+        showErrorTransactionToast(error);
+      }
+    } else {
+      openConnectModal();
+    }
+  };
 
   const onSubmitInterests = async (
     submittedValues: IFormValuesInterests,

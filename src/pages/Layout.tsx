@@ -21,7 +21,7 @@ function Layout({ children, className }: ContainerProps) {
   if (router.asPath.includes('dashboard') || router.asPath.includes('admin')) {
     return (
       <>
-        <div className={'h-[100vh] dashboard pb-[140px] bg-black'}>
+        <div className={className + ' dashboard pb-[110px] bg-black'}>
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog as='div' className='relative z-40 md:hidden' onClose={setSidebarOpen}>
               <Transition.Child
@@ -95,7 +95,6 @@ function Layout({ children, className }: ContainerProps) {
           </div>
 
           <div className='flex flex-1 flex-col md:pl-80'>
-            
             <div className='top-0 z-10 flex flex-shrink-0 flex-row pt-3'>
               <div className='flex flex-1 items-center pl-6'>
                 <div className='sm:hidden w-16'>
@@ -103,7 +102,7 @@ function Layout({ children, className }: ContainerProps) {
                 </div>
               </div>
               <div className='w-full mt-4'>
-              <NetworkSwitch />
+                <NetworkSwitch />
               </div>
               <UserAccount />
             </div>
