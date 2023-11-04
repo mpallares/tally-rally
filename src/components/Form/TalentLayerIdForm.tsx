@@ -132,8 +132,8 @@ function TalentLayerIdForm() {
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const web3Tags: string[] = ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5'];
-  const networkTags: string[] = ['Tag 10', 'Tag 11', 'Tag 12', 'Tag 13', 'Tag 14'];
+  const web3Tags: string[] = ['DEFI', 'NFTS', 'TRADING', 'METAVERSE', 'DAO', 'PRIVACY', 'P2P', 'L2'];
+  const networkTags: string[] = ['ETH', 'BTC', 'POLYGON', 'OP', 'BASE', 'FILECOIN', 'ARB', 'BNB'];
 
   const toggleTag = (tag: string) => {
     if (selectedTags.includes(tag)) {
