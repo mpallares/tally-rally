@@ -38,8 +38,6 @@ const Web3MailProvider = ({ children }: { children: ReactNode }) => {
   const [protectedEmail, setProtectedEmail] = useState<ProtectedData | undefined>();
   const [emailGrantedAccess, setEmailGrantedAccess] = useState<GrantedAccess | undefined>();
 
-  console.log('account', account);
-
   log('Web3MailProvider ---- call', {
     dataProtector,
     account,
@@ -134,9 +132,13 @@ const Web3MailProvider = ({ children }: { children: ReactNode }) => {
       setPlatformHasAccess(true);
       setEmailGrantedAccess(emailGrantedAccess);
     };
-    fetchData().then(() => {
-      setIsFetching(false);
-    });
+    fetchData()
+      .catch(error => {
+        console.log(`Failed to fetchGrantedAccess ${error.message}`);
+      })
+      .finally(() => {
+        setIsFetching(false);
+      });
   }, [account]);
 
   const protectEmailAndGrantAccess = useCallback(
@@ -146,7 +148,6 @@ const Web3MailProvider = ({ children }: { children: ReactNode }) => {
         protectedEmail,
         email,
       });
-      console.log('protectedData', protectedData);
 
       if (!dataProtector) {
         console.error(

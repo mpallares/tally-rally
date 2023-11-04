@@ -1,7 +1,7 @@
 import { useWeb3Modal } from '@web3modal/react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useContext, useState } from 'react';
-import { usePublicClient, useWalletClient } from 'wagmi';
+import { usePublicClient, useSwitchNetwork, useWalletClient } from 'wagmi';
 import * as Yup from 'yup';
 import TalentLayerContext from '../../context/talentLayer';
 import { useChainId } from '../../hooks/useChainId';
@@ -58,6 +58,8 @@ function TalentLayerIdForm() {
   const { calculateMintFee } = useMintFee();
   const { user } = useContext(TalentLayerContext);
   const { protectEmailAndGrantAccess, emailIsProtected } = useContext(Web3MailContext);
+  const { switchNetwork, switchNetworkAsync } = useSwitchNetwork();
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const validationSchemaTalentLayerId = Yup.object().shape({
     handle: Yup.string()
@@ -133,16 +135,23 @@ function TalentLayerIdForm() {
     submittedValues: IFormValuesEmail,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
   ) => {
+    if (!user) {
+      switchNetwork?.(80001);
+    }
+
     if (user && walletClient && publicClient) {
       try {
+        await switchNetworkAsync?.(134);
         const promise = protectEmailAndGrantAccess(submittedValues.email);
-        console.log('promise', promise);
 
         await toast.promise(promise, {
           pending: 'Pending transactions, follow instructions in your wallet',
           success: 'Access granted succefully',
           error: 'An error occurred while granting access',
         });
+
+        await switchNetworkAsync?.(80001);
+
         setSubmitting(false);
       } catch (error) {
         showErrorTransactionToast(error);
@@ -155,9 +164,12 @@ function TalentLayerIdForm() {
   const onSubmitInterests = async (
     submittedValues: IFormValuesInterests,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
-  ) => {};
+  ) => {
+    console.log('selectedOptions', selectedOptions);
+    console.log('selectedTags', selectedTags);
 
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    console.log('submittedValues', submittedValues)
+  };
 
   const web3Tags: string[] = [
     'DEFI',

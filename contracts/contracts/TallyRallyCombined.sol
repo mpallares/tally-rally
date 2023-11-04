@@ -11,7 +11,7 @@ contract TallyRallyCombined is ERC20 {
 
   enum SurveyType {
     ADVERTISMENT,
-    RESEARCH
+    SURVEY
   }
 
   struct Survey {

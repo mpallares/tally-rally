@@ -1,11 +1,5 @@
 import { useContext } from 'react';
 import Steps from '../../components/Steps';
-import UserBadges from '../../modules/Sismo/components/UserBadges';
-import UserDetail from '../../components/UserDetail';
-import UserGains from '../../components/UserGains';
-import UserPayments from '../../components/UserPayments';
-import UserProposals from '../../components/UserProposals';
-import UserServices from '../../components/UserServices';
 import TalentLayerContext from '../../context/talentLayer';
 import Link from 'next/link';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
@@ -33,8 +27,8 @@ function Dashboard() {
           </Link>
         </div>
       </div>
-      {/* <TalentLayerIdForm /> */}
-      {account?.isConnected && user ? 'Hey There!' : <TalentLayerIdForm />}
+      <TalentLayerIdForm />
+      {/* {account?.isConnected && user ? 'Hey There!' : <TalentLayerIdForm />} */}
 
       {/* {account?.isConnected && user && (
         <div>

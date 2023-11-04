@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent, FormEvent, useContext } from 'react';
 import Web3MailContext from '../../modules/Web3mail/context/web3mail';
 import TalentLayerIdForm from '../../components/Form/TalentLayerIdForm';
+import { toast } from 'react-toastify';
 
 export default function Onboarding() {
   const { protectEmailAndGrantAccess } = useContext(Web3MailContext);
-  console.log('protectEmailAndGrantAccess', protectEmailAndGrantAccess);
   const [email, setEmail] = useState('');
   const [interest, setInterest] = useState('');
   const [interests, setInterests] = useState<string[]>([]);
@@ -29,7 +29,7 @@ export default function Onboarding() {
     setInterests(updatedInterests);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     protectEmailAndGrantAccess(email);
   };
