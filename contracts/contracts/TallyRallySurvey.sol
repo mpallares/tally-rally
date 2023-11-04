@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {TallyRallyLottery} from './TallyRallyLottery.sol';
-
 contract TallyRallySurvey {
   enum SurveyType {
     ADVERTISMENT,
@@ -17,9 +15,9 @@ contract TallyRallySurvey {
     string[] answerCids;
   }
 
-  uint256 currentSurveyId;
+  uint256 public currentSurveyId;
 
-  mapping(uint256 => Survey) surveys;
+  mapping(uint256 => Survey) public surveys;
 
   event SurveyCreated(uint256 id, address dataBuyer, SurveyType surveyType, string content);
   event SurveyAnswered(
@@ -51,8 +49,8 @@ contract TallyRallySurvey {
   }
 
   function answerSurvey(uint256 id, string memory answerCid) public {
-    Survey memory survey = surveys[id];
-    survey.answerCids[survey.answerCids.length] = answerCid;
+    Survey storage survey = surveys[id];
+    survey.answerCids.push(answerCid);
 
     emit SurveyAnswered(survey.id, survey.dataBuyer, survey.surveyType, survey.content, answerCid);
   }
