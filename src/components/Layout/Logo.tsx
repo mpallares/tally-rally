@@ -6,7 +6,7 @@ function Logo({ theme = 'dark' }: { theme?: 'dark' | 'light' }) {
     <div className={`text-1xl ${theme == 'light' ? 'text-white' : 'text-redpraha'}`}>
       <Link href='/' className='flex items-center'>
         <Image
-          src={'/logo-text-white.png'}
+          src={'/tally-logo-desktop.svg'}
           width={180}
           height={36}
           alt='StarterKit logo'
