@@ -5,14 +5,14 @@ function BottomLink({ children, href }: { children: React.ReactNode; href: strin
   const isDashboard = href == '/dashboard';
   let className = isDashboard
     ? router.asPath === href
-      ? 'bg-redpraha'
+      ? 'bg-trblue'
       : ''
     : router.asPath.includes(href)
-    ? 'bg-redpraha'
+    ? 'bg-trblue'
     : '';
 
   className +=
-    ' inline-flex font-light text-white flex-col items-center justify-center px-2 hover:bg-redpraha group m-2 rounded-xl';
+    ' inline-flex text-trorange flex-col items-center justify-center px-2 hover:bg-trblue group m-2 rounded-[24px] uppercase';
 
   const handleClick = (e: any) => {
     e.preventDefault();

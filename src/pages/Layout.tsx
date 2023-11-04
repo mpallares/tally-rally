@@ -21,7 +21,7 @@ function Layout({ children, className }: ContainerProps) {
   if (router.asPath.includes('dashboard') || router.asPath.includes('admin')) {
     return (
       <>
-        <div className={className + ' dashboard pb-[110px] bg-black'}>
+        <div className={'h-[100vh] dashboard pb-[140px] bg-black'}>
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog as='div' className='relative z-40 md:hidden' onClose={setSidebarOpen}>
               <Transition.Child
@@ -78,12 +78,12 @@ function Layout({ children, className }: ContainerProps) {
             </Dialog>
           </Transition.Root>
 
-          <div className='hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col border-r border-gray-700 bg-trbrown'>
-            <div className='flex flex-grow flex-col overflow-y-auto  pt-5'>
-              <div className='flex flex-shrink-0 items-center bg-trbrown px-6'>
+          <div className='hidden md:fixed md:inset-y-0 md:flex md:w-80 md:flex-col bg-trbrown'>
+            <div className='flex flex-grow flex-col items-center overflow-y-auto  pt-5'>
+              <div className='w-[156px] pt-20'>
                 <Logo />
               </div>
-              <div className='mt-8 flex flex-1 flex-col justify-between'>
+              <div className='w-full mt-20 flex flex-1 flex-col justify-between'>
                 <SideMenu />
               </div>
               {process.env.NEXT_PUBLIC_ACTIVE_WEB3MAIL == 'true' && (
@@ -94,19 +94,22 @@ function Layout({ children, className }: ContainerProps) {
             </div>
           </div>
 
-          <div className='flex flex-1 flex-col md:pl-64'>
-            <div className='top-0 z-10 flex h-16 flex-shrink-0'>
+          <div className='flex flex-1 flex-col md:pl-80'>
+            
+            <div className='top-0 z-10 flex flex-shrink-0 flex-row pt-3'>
               <div className='flex flex-1 items-center pl-6'>
-                <div className='sm:hidden'>
+                <div className='sm:hidden w-16'>
                   <Logo />
                 </div>
               </div>
+              <div className='w-full mt-4'>
               <NetworkSwitch />
+              </div>
               <UserAccount />
             </div>
 
             <main>
-              <div className={`p-6`}>{children}</div>
+              <div className={`h-full p-6`}>{children}</div>
             </main>
           </div>
         </div>
