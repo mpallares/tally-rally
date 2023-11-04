@@ -33,9 +33,10 @@ function Dashboard() {
           </Link>
         </div>
       </div>
-      <TalentLayerIdForm />
+      {/* <TalentLayerIdForm /> */}
+      {account?.isConnected && user ? 'Hey There!' : <TalentLayerIdForm />}
 
-      {account?.isConnected && user && (
+      {/* {account?.isConnected && user && (
         <div>
           <div className='mb-6'>
             <UserDetail user={user} />
@@ -59,7 +60,7 @@ function Dashboard() {
             <UserProposals user={user} />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

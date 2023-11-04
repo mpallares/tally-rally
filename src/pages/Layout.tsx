@@ -21,7 +21,7 @@ function Layout({ children, className }: ContainerProps) {
   if (router.asPath.includes('dashboard') || router.asPath.includes('admin')) {
     return (
       <>
-        <div className={className + ' dashboard pb-[110px] bg-black'}>
+        <div className={className + ' dashboard pb-[100vh] bg-black'}>
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog as='div' className='relative z-40 md:hidden' onClose={setSidebarOpen}>
               <Transition.Child

@@ -136,7 +136,6 @@ function TalentLayerIdForm() {
     if (user && walletClient && publicClient) {
       try {
         const promise = protectEmailAndGrantAccess(submittedValues.email);
-
         console.log('promise', promise);
 
         await toast.promise(promise, {
@@ -160,7 +159,16 @@ function TalentLayerIdForm() {
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const web3Tags: string[] = ['DEFI', 'NFTS', 'TRADING', 'METAVERSE', 'DAO', 'PRIVACY', 'P2P', 'L2'];
+  const web3Tags: string[] = [
+    'DEFI',
+    'NFTS',
+    'TRADING',
+    'METAVERSE',
+    'DAO',
+    'PRIVACY',
+    'P2P',
+    'L2',
+  ];
   const networkTags: string[] = ['ETH', 'BTC', 'POLYGON', 'OP', 'BASE', 'FILECOIN', 'ARB', 'BNB'];
 
   const toggleTag = (tag: string) => {

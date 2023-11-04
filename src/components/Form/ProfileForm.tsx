@@ -70,7 +70,6 @@ function ProfileForm({ callback }: { callback?: () => void }) {
     values: IFormValues,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
   ) => {
-    console.log('inside update');
     if (user && walletClient && publicClient && talentLayerClient) {
       try {
         const profile = {

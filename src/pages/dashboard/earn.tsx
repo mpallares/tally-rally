@@ -37,13 +37,14 @@ function Talents() {
         <SearchTalentButton value={searchQuery} />
       </div> */}
 
-      <div className='grid grid-cols-1 gap-4'>
-        {users.map((user, i) => {
+      <div className='grid grid-cols-1 gap-4 p-10'>
+        <UserItem />
+        {/* {users.map((user, i) => {
           return <UserItem user={user} key={i} />;
-        })}
+        })} */}
       </div>
 
-      {users.length > 0 && hasMoreData && !loading && (
+      {/* {users.length > 0 && hasMoreData && !loading && (
         <div className='flex justify-center items-center gap-10 flex-col pb-5'>
           <button
             type='submit'
@@ -55,7 +56,7 @@ function Talents() {
             Load More
           </button>
         </div>
-      )}
+      )} */}
       {loading && (
         <div className='flex justify-center items-center gap-10 flex-col pb-5 mt-5'>
           <Loading />
