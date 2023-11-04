@@ -16,6 +16,7 @@ contract TallyRallySurvey {
     address dataBuyer;
     SurveyType surveyType;
     string content;
+    string[] answerCids;
   }
 
   uint256 currentSurveyId;
@@ -29,11 +30,14 @@ contract TallyRallySurvey {
   function createSurvey(SurveyType surveyType, string memory content) public payable {
     require(msg.value == surveyPrice, 'msg.value != surveyPrice');
 
+    string[] memory answerCids = new string[](0);
+
     Survey memory survey = Survey({
       id: currentSurveyId,
       dataBuyer: msg.sender,
       surveyType: surveyType,
-      content: content
+      content: content,
+      answerCids: answerCids
     });
 
     surveys[currentSurveyId] = survey;
@@ -41,5 +45,10 @@ contract TallyRallySurvey {
     currentSurveyId += 1;
 
     emit SurveyCreated(survey.id, survey.dataBuyer, survey.surveyType, survey.content);
+  }
+
+  function answerSurvey(uint256 id, string memory answerCid) public view {
+    Survey memory survey = surveys[id];
+    survey.answerCids[survey.answerCids.length] = answerCid;
   }
 }

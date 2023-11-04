@@ -9,6 +9,10 @@ contract TallyRallyLottery is ERC20 {
 
   constructor() ERC20('MAYBE', 'MAYB') {}
 
+  function mint(address to, uint256 amount) public {
+    _mint(to, amount);
+  }
+
   function play() external {
     uint256 balance = balanceOf(msg.sender);
     uint256 approvalAmount = this.allowance(msg.sender, address(this));
