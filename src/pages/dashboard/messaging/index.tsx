@@ -21,6 +21,7 @@ function MessagingIndex() {
   const { providerState } = useContext(XmtpContext);
   const config = useConfig();
   const [balance, setBalance] = useState(0);
+  const [additionalTransitionClass, setAdditionalTransitionClass] = useState('');
   // Listens to new conversations ? ==> Yes, & sets them in "xmtp context". Stream stops "onDestroy"
   useStreamConversations();
 
@@ -35,8 +36,10 @@ function MessagingIndex() {
     setRaceState('approve');
   };
 
-  // useEffect(() => {
-  //   if(raceState === 'allowance') {
+  useEffect(() => {
+    if(raceState === 'play') {
+      setAdditionalTransitionClass(' translate-x-[100vh]');
+    }
   //     const { data, isError, isLoading, error } = useContractWrite({
   //       address: config.contracts.tallyRallyCombined,
   //       abi: TallyRallyCombined.abi,
@@ -48,7 +51,7 @@ function MessagingIndex() {
   //     // TODO: make cars animated
 
   //   }
-  // }, [raceState]);
+  }, [raceState]);
 
   // const { data, isError, isLoading, error } = useContractRead({
   //   address: config.contracts.tallyRallyCombined,
@@ -109,21 +112,21 @@ function MessagingIndex() {
           width={80}
           height={36}
           alt='Car 1'
-          className='py-4 mr-[100%] absolute bottom-[80%]'
+          className={'py-4 mr-[100%] absolute bottom-[80%] transition ease-out duration-[55s]'+additionalTransitionClass}
         />
         <Image
           src={'/images/Car2.svg'}
           width={80}
           height={36}
           alt='Car 2'
-          className='py-4 z-2 mr-[100%] absolute bottom-[45%]'
+          className={'py-4 z-2 mr-[100%] absolute bottom-[45%] transition ease-in duration-[55s]'+additionalTransitionClass}
         />
         <Image
           src={'/images/Car3.svg'}
           width={80}
           height={36}
           alt='Car 3'
-          className='py-4 z-2 mr-[100%] absolute bottom-[10%]'
+          className={'py-4 z-2 mr-[100%] absolute bottom-[10%] transition ease-in-out duration-[55s]'+additionalTransitionClass}
         />
       </div>
       {/* sub track */}

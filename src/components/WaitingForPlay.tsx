@@ -22,7 +22,7 @@ function WaitingForPlay({setRaceState}: WaitingForPlayProps) {
         listener(log) {
           setRaceState('won');
         },
-      })
+    });
     
     useEffect(() => {
         walletClient.writeContract({
@@ -33,16 +33,12 @@ function WaitingForPlay({setRaceState}: WaitingForPlayProps) {
         }).then((tx) => {
             setTimeout(() => {
                 setRaceState('lose')
-            }, 45000)
-            console.log("tx - play",tx);
-            setRaceState('won');
-            // setRaceState('lose');
-
-        });    
+            }, 30000)
+        });
     }, [])
 
     return (
-        <p>Waiting for approval</p>
+        <p>Waiting for lottery result!</p>
     );
 }
 
