@@ -24,6 +24,13 @@ contract TallyRallySurvey {
   mapping(uint256 => Survey) surveys;
 
   event SurveyCreated(uint256 id, address dataBuyer, SurveyType surveyType, string content);
+  event SurveyAnswered(
+    uint256 id,
+    address dataBuyer,
+    SurveyType surveyType,
+    string content,
+    string answerCid
+  );
 
   constructor() {}
 
@@ -47,8 +54,10 @@ contract TallyRallySurvey {
     emit SurveyCreated(survey.id, survey.dataBuyer, survey.surveyType, survey.content);
   }
 
-  function answerSurvey(uint256 id, string memory answerCid) public view {
+  function answerSurvey(uint256 id, string memory answerCid) public {
     Survey memory survey = surveys[id];
     survey.answerCids[survey.answerCids.length] = answerCid;
+
+    emit SurveyAnswered(survey.id, survey.dataBuyer, survey.surveyType, survey.content, answerCid);
   }
 }

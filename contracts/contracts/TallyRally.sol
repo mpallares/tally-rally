@@ -17,7 +17,11 @@ contract TallyRally is TallyRallyLottery, TallyRallySurvey {
     tallyRallyLottery = new TallyRallyLottery();
   }
 
-  function answerSurveyMintToken(uint256 id, string memory answerCid) public {
+  function createSurveyForBuyer(SurveyType surveyType, string memory content) public payable {
+    tallyRallySurvey.createSurvey{value: msg.value}(surveyType, content);
+  }
+
+  function answerSurveyMintTokenForOwner(uint256 id, string memory answerCid) public {
     // TODO: How to validate user is allowed to answer survey
 
     // call TallyRallySurvey's answerSurvey function
