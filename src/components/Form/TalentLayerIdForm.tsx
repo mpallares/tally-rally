@@ -1,6 +1,6 @@
 import { useWeb3Modal } from '@web3modal/react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { usePublicClient, useWalletClient } from 'wagmi';
 import * as Yup from 'yup';
 import TalentLayerContext from '../../context/talentLayer';
@@ -18,10 +18,16 @@ import { createWeb3mailToast } from '../../modules/Web3mail/utils/toast';
 
 interface IFormValues {
   handle: string;
+  email: string;
+  consentInfo: string[];
+  interests: string[];
 }
 
 const initialValues: IFormValues = {
   handle: '',
+  email: '',
+  interests: [],
+  consentInfo: [],
 };
 
 function TalentLayerIdForm() {
@@ -93,12 +99,35 @@ function TalentLayerIdForm() {
     }
   };
 
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const tags: string[] = ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5'];
+
+  const toggleTag = (tag: string) => {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter(selectedTag => selectedTag !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+
+  const options = ['Marketing', 'Research'];
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+  const toggleOption = (option: string) => {
+    if (selectedOptions.includes(option)) {
+      setSelectedOptions(selectedOptions.filter(selectedOption => selectedOption !== option));
+    } else {
+      setSelectedOptions([...selectedOptions, option]);
+    }
+  };
+
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
       {({ isSubmitting, values }) => (
-        <Form>
-          <p className='text-center mb-8'>Mint your TalentLayer ID</p>
-          <div className='flex  bg-endnight py-4 px-4 mb-2 sm:px-0 justify-center items-center flex-row drop-shadow-lg rounded'>
+        <Form className='border border-gray-300 p-4'>
+          <p className='mb-4'>Mint My ID 🏎️</p>
+          <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row drop-shadow-lg rounded'>
             <div className='sm:px-6 flex flex-row items-center gap-2'>
               <Field
                 type='text'
@@ -109,14 +138,12 @@ function TalentLayerIdForm() {
                 required
               />
             </div>
-
             <div className='flex items-center'>
               {values.handle && chainId != NetworkEnum.IEXEC && (
                 <HandlePrice handle={values.handle} />
               )}
               <div>
                 <div className='sm:pl-2 sm:pr-4 sm:space-x-4 relative'>
-                  <SubmitButton isSubmitting={isSubmitting} />
                   <HelpPopover>
                     <h3 className='font-semibold text-white dark:text-white'>
                       What is a TalentLayerID?
@@ -160,6 +187,89 @@ function TalentLayerIdForm() {
           <span className='label-text text-red-500 mt-2'>
             <ErrorMessage name='handle' />
           </span>
+          <p className='mb-4 border-gray-700'>
+            Your Racer ID is your unique tag in the Talent Layer universe. Think of it as your
+            handle on the digital raceway – make it catchy, make it clever, make it you.
+          </p>
+          <div className='border border-gray-300 mb-4'></div>
+          <p className='mb-8'>Secure Your Inbox on the Track 🚦</p>
+          <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row drop-shadow-lg rounded'>
+            <div className='sm:px-6 flex flex-row items-center gap-2'>
+              <Field
+                type='text'
+                className='text-gray-500 py-2 focus:ring-0 outline-none text-sm border-0 rounded-xl h-[40px]'
+                placeholder='Type your email address...'
+                id='handle'
+                name='handle'
+                required
+              />
+            </div>
+          </div>
+
+          <p className='mb-8'>
+            Your email remains private always. With iEXEC's privacy shield, you'll safely receive
+            ads and surveys directly, no exposure needed—think of it as your invisible inbox.
+          </p>
+          <p className='mb-8'>
+            I consent to receive invites via Talent Layer, keeping my email confidential for:
+          </p>
+          <div className='container mx-auto mb-8'>
+            {options.map((option, index) => {
+              return (
+                <div key={index} className='flex items-center mb-4'>
+                  <input
+                    type='checkbox'
+                    className='form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out'
+                    id={`optionCheckbox-${index}`}
+                    checked={selectedOptions.includes(option)}
+                    onChange={() => toggleOption(option)}
+                  />
+                  <label htmlFor={`optionCheckbox-${index}`} className='ml-2 text-sm text-gray-700'>
+                    {option}
+                  </label>
+                </div>
+              );
+            })}
+            {/* {options.map((option, index) => 
+      return (
+        <div key={index} className="flex items-center mb-4">
+          <input
+            type="checkbox"
+            className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+            id={`optionCheckbox-${index}`}
+            checked={selectedOptions.includes(option)}
+            onChange={() => toggleOption(option)}
+          />
+          <label htmlFor={`optionCheckbox-${index}`} className="ml-2 text-sm text-gray-700">
+            {option}
+          </label>
+        </div>
+      )} */}
+          </div>
+          <div className='border border-gray-300 mb-8'></div>
+          <p className='mb-4'>Set your interests 💨</p>
+          <p className='mb-4'>category: Web3</p>
+          <div className='flex flex-wrap gap-2 mb-4'>
+            {tags.map((tag, index) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => toggleTag(tag)}
+                  className={`p-2 rounded-full cursor-pointer ${
+                    selectedTags.includes(tag)
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-300 text-gray-700'
+                  }`}>
+                  {tag}
+                </div>
+              );
+            })}
+          </div>
+          <p className='mb-8'>category: Web3</p>
+          <div className='flex py-4 px-4 mb-2 sm:px-0 justify-center items-center flex-row drop-shadow-lg rounded'>
+            <div className='sm:px-6 flex flex-row items-center gap-2'></div>
+          </div>
+          <SubmitButton isSubmitting={isSubmitting} />
         </Form>
       )}
     </Formik>

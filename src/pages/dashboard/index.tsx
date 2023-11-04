@@ -9,6 +9,7 @@ import UserServices from '../../components/UserServices';
 import TalentLayerContext from '../../context/talentLayer';
 import Link from 'next/link';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import TalentLayerIdForm from '../../components/Form/TalentLayerIdForm';
 
 function Dashboard() {
   const { account, user } = useContext(TalentLayerContext);
@@ -32,8 +33,9 @@ function Dashboard() {
           </Link>
         </div>
       </div>
+      <TalentLayerIdForm />
 
-      {account?.isConnected && user && (
+      {/* {account?.isConnected && user && (
         <div>
           <div className='mb-6'>
             <UserDetail user={user} />
@@ -57,7 +59,7 @@ function Dashboard() {
             <UserProposals user={user} />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
