@@ -36,21 +36,26 @@ function UserItem({ user }: { user: IUser }) {
             </div>
           </div>
         </div>
-        <Stars rating={Number(user.rating)} numReviews={user.userStats.numReceivedReviews} />
+        {/* <Stars rating={Number(user.rating)} numReviews={user.userStats.numReceivedReviews} /> */}
+        <div className='flex flex-col gap-4 items-center mb-4'>
+          <Link
+            className='text-zinc-600 bg-white hover:bg-zinc-200 hover:text-white w-full px-6 py-3 rounded-lg text-lg flex items-center justify-center'
+            href={`/dashboard/profile/${user.id}`}>
+            Yes, it is
+          </Link>
+          <Link
+            className='text-zinc-600 bg-white hover:bg-zinc-200 hover:text-white w-full px-6 py-3 rounded-lg text-lg flex items-center justify-center'
+            href={`/dashboard/profile/${user.id}`}>
+            No, it is not
+          </Link>
+        </div>
 
         <div className='flex flex-row gap-4 justify-end items-center'>
           <Link
-            className='text-zinc-600 bg-white hover:bg-zinc-200 hover:text-white px-5 py-2.5 rounded-xl text-sm'
+            className='text-zinc-600 bg-white hover:bg-zinc-200 hover:text-white px-5 py-2.5 rounded-xl items-center text-lg'
             href={`/dashboard/profile/${user.id}`}>
-            View profile
+            Mint
           </Link>
-          {currentUser?.id === user.id && (
-            <Link
-              className='text-green-600 bg-green-50 hover:bg-redpraha hover:text-white px-5 py-2 rounded'
-              href={`/dashboard/profile/edit`}>
-              Edit profile
-            </Link>
-          )}
         </div>
       </div>
     </div>

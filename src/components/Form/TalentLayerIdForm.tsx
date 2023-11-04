@@ -49,6 +49,12 @@ function TalentLayerIdForm() {
         is: account && account.isConnected,
         then: schema => schema.required('handle is required'),
       }),
+
+    email: Yup.string().email('Invalid email address').required('Email is required'),
+
+    interests: Yup.array().of(Yup.string()).min(1, 'Select at least one interest'),
+
+    consentInfo: Yup.array().of(Yup.string()).min(1, 'Select at least one consent option'),
   });
 
   const onSubmit = async (
@@ -101,7 +107,8 @@ function TalentLayerIdForm() {
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const tags: string[] = ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5'];
+  const web3Tags: string[] = ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5'];
+  const networkTags: string[] = ['Tag 10', 'Tag 11', 'Tag 12', 'Tag 13', 'Tag 14'];
 
   const toggleTag = (tag: string) => {
     if (selectedTags.includes(tag)) {
@@ -192,15 +199,15 @@ function TalentLayerIdForm() {
             handle on the digital raceway – make it catchy, make it clever, make it you.
           </p>
           <div className='border border-gray-300 mb-4'></div>
-          <p className='mb-8'>Secure Your Inbox on the Track 🚦</p>
+          <p className='mb-4'>Secure Your Inbox on the Track 🚦</p>
           <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row drop-shadow-lg rounded'>
             <div className='sm:px-6 flex flex-row items-center gap-2'>
               <Field
                 type='text'
                 className='text-gray-500 py-2 focus:ring-0 outline-none text-sm border-0 rounded-xl h-[40px]'
                 placeholder='Type your email address...'
-                id='handle'
-                name='handle'
+                id='email'
+                name='email'
                 required
               />
             </div>
@@ -224,48 +231,47 @@ function TalentLayerIdForm() {
                     checked={selectedOptions.includes(option)}
                     onChange={() => toggleOption(option)}
                   />
-                  <label htmlFor={`optionCheckbox-${index}`} className='ml-2 text-sm text-gray-700'>
+                  <label
+                    htmlFor={`optionCheckbox-${index}`}
+                    className='ml-2 text-sm text-white-700'>
                     {option}
                   </label>
                 </div>
               );
             })}
-            {/* {options.map((option, index) => 
-      return (
-        <div key={index} className="flex items-center mb-4">
-          <input
-            type="checkbox"
-            className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
-            id={`optionCheckbox-${index}`}
-            checked={selectedOptions.includes(option)}
-            onChange={() => toggleOption(option)}
-          />
-          <label htmlFor={`optionCheckbox-${index}`} className="ml-2 text-sm text-gray-700">
-            {option}
-          </label>
-        </div>
-      )} */}
           </div>
           <div className='border border-gray-300 mb-8'></div>
           <p className='mb-4'>Set your interests 💨</p>
           <p className='mb-4'>category: Web3</p>
           <div className='flex flex-wrap gap-2 mb-4'>
-            {tags.map((tag, index) => {
+            {web3Tags.map((tag, index) => {
               return (
                 <div
                   key={index}
                   onClick={() => toggleTag(tag)}
                   className={`p-2 rounded-full cursor-pointer ${
-                    selectedTags.includes(tag)
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-gray-300 text-gray-700'
+                    selectedTags.includes(tag) ? '#0048B2 text-white' : 'bg-gray-300 text-gray-700'
                   }`}>
                   {tag}
                 </div>
               );
             })}
           </div>
-          <p className='mb-8'>category: Web3</p>
+          <p className='mb-4'>category: Networks</p>
+          <div className='flex flex-wrap gap-2 mb-4'>
+            {networkTags.map((tag, index) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => toggleTag(tag)}
+                  className={`p-2 rounded-full cursor-pointer ${
+                    selectedTags.includes(tag) ? '#0048B2 text-white' : 'bg-gray-300 text-gray-700'
+                  }`}>
+                  {tag}
+                </div>
+              );
+            })}
+          </div>
           <div className='flex py-4 px-4 mb-2 sm:px-0 justify-center items-center flex-row drop-shadow-lg rounded'>
             <div className='sm:px-6 flex flex-row items-center gap-2'></div>
           </div>
