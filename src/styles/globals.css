@@ -31,7 +31,8 @@
 
 /* Global */
 body {
-  font-family: 'Inter';
+  /* font-family: 'Inter'; */
+  font-family: 'Kanit', sans-serif;
 }
 
 body .dashboard .Toastify__toast-container--bottom-right {

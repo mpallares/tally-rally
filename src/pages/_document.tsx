@@ -29,6 +29,9 @@ export default function Document() {
         <link rel='manifest' href='/manifest.json' />
         <link rel='mask-icon' href='/images/safari-pinned-tab.svg' color='#000000' />
         <link rel='shortcut icon' href='/favicon.ico' />
+
+      <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,600;0,700;0,900;1,600;1,700;1,900&display=swap" rel="stylesheet"></link>
+      
       </Head>
       <body className='text-black'>
         <Main />
