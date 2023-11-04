@@ -81,7 +81,7 @@ function Home() {
 
             <div className='mr-[60px] flex items-center justify-end lg:mr-0'>
               <a
-                href='/dashboard'
+                href='/dashboard/earn'
                 className='rounded-md bg-redpraha py-[6px] px-[12px] xl:py-[10px] xl:px-[30px] text-base font-medium text-white hover:bg-opacity-90'>
                 Dapp
               </a>
@@ -96,19 +96,18 @@ function Home() {
             <div className='-mx-4 flex flex-wrap items-center'>
               <div className='w-full px-4 lg:w-7/12'>
                 <div className='wow fadeInUp mb-12 lg:mb-0 lg:max-w-[570px]' data-wow-delay='.2s'>
-                  <span className='mb-5 block text-lg font-medium leading-tight text-black  sm:text-[22px] xl:text-[22px]'>
-                    Ready to Use NextJS dapp.
-                  </span>
                   <h1 className='mb-6 text-3xl font-bold leading-tight text-black  sm:text-[40px] md:text-[50px] lg:text-[42px] xl:text-[50px]'>
-                    Using
+                    Earn, Race, Repeat –
                     <span className='inline bg-redpraha bg-clip-text text-transparent mx-2'>
-                      TalentLayer & XMTP
+                      Your Clicks Have Never Been This{' '}
                     </span>
-                    protocols.
+                    Thrilling!
                   </h1>
                   <p className='mb-10 max-w-[475px] text-base leading-relaxed text-body'>
-                    All essential components to start building an amazing dapp with interoperable
-                    work and messaging
+                    Tap into TallyRally, the playful platform where your views turn into velocity!
+                    Mint $MAYBE tokens by engaging with content, then rev up for a chance to win big
+                    in our thrilling token race. It's a dash for cash where your opinions and clicks
+                    can lead to a jackpot joyride!
                   </p>
 
                   <div className='flex flex-wrap items-center'>
@@ -650,8 +649,7 @@ function Home() {
                 How it Works?
               </h2>
               <p className='text-base text-body'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor eros.
-                Donec vitae tortor lacus. Phasellus aliquam ante in maximus.
+                At TallyRally, your engagement launches you into a fast-paced world of rewards
               </p>
             </div>
           </div>
@@ -684,10 +682,12 @@ function Home() {
                       </svg>
                     </div>
                     <h3 className='mb-4 text-xl font-semibold text-black  sm:text-[22px] xl:text-[26px]'>
-                      Fork the code
+                      Mint to Make Your Mark
                     </h3>
                     <p className='text-base text-body'>
-                      All the code is fully open source, you can use it for any purposes,{' '}
+                      Mint to Make Your Mark: Just by watching ads and answering surveys tailored to
+                      your interests, you mint $MAYBE tokens. Each token is a chance to throttle up
+                      in our virtual race against the contract.
                       <a
                         className='underline'
                         target='_blank'
@@ -723,11 +723,12 @@ function Home() {
                       </svg>
                     </div>
                     <h3 className='mb-4 text-xl font-semibold text-black  sm:text-[22px] xl:text-[26px]'>
-                      Setup
+                      Race for Riches
                     </h3>
                     <p className='text-base text-body'>
-                      Setup your local environnement by copying the .env.example and adjust the
-                      variables
+                      Enter the RACE page with your $MAYBE tokens and compete in a digital dash
+                      against the odds. With a 10% chance to win, every race is an exhilarating
+                      chance to claim the growing pot of escrowed funds.
                     </p>
                   </div>
                 </div>
@@ -757,11 +758,12 @@ function Home() {
                       </svg>
                     </div>
                     <h3 className='mb-4 text-xl font-semibold text-black  sm:text-[22px] xl:text-[26px]'>
-                      Enjoy and code!
+                      Victory Vault
                     </h3>
                     <p className='text-base text-body'>
-                      You can now start coding and improve the basic messaging system with your
-                      incredible features!
+                      Win the race and unlock the vault! The pot is yours, transferred swiftly to
+                      your wallet. Then it's back to the starting line as new ads and surveys fill
+                      up the next jackpot.
                     </p>
                   </div>
                 </div>
