@@ -4,8 +4,6 @@ pragma solidity ^0.8.20;
 import {TallyRallyLottery} from './TallyRallyLottery.sol';
 
 contract TallyRallySurvey {
-  uint256 surveyPrice = 0.01 ether;
-
   enum SurveyType {
     ADVERTISMENT,
     RESEARCH
@@ -34,9 +32,7 @@ contract TallyRallySurvey {
 
   constructor() {}
 
-  function createSurvey(SurveyType surveyType, string memory content) public payable {
-    require(msg.value == surveyPrice, 'msg.value != surveyPrice');
-
+  function createSurvey(SurveyType surveyType, string memory content) public {
     string[] memory answerCids = new string[](0);
 
     Survey memory survey = Survey({

@@ -5,7 +5,6 @@ import {ERC20} from '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
 contract TallyRallyLottery is ERC20 {
   event LotteryEntry(address indexed player);
-  event LotteryWin(address indexed winner, uint256 amount);
 
   constructor() ERC20('MAYBE', 'MAYB') {}
 
@@ -13,7 +12,7 @@ contract TallyRallyLottery is ERC20 {
     _mint(to, amount);
   }
 
-  function play() external {
+  function play() external returns (bool didWin) {
     uint256 balance = balanceOf(msg.sender);
     uint256 approvalAmount = this.allowance(msg.sender, address(this));
 
@@ -26,15 +25,8 @@ contract TallyRallyLottery is ERC20 {
     // Emit an event that a player has entered
     emit LotteryEntry(msg.sender);
 
-    // 10% chance to win
-    if (random() < 30) {
-      uint256 prizeAmount = balanceOf(address(this));
-
-      // Transfer the prize to the winner
-      require(ERC20(address(this)).transfer(msg.sender, prizeAmount), 'Prize transfer failed');
-
-      emit LotteryWin(msg.sender, prizeAmount);
-    }
+    // 30% chance to win
+    didWin = random() < 30;
   }
 
   // Simple pseudo-random number generator
