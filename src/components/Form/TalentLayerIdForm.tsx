@@ -132,150 +132,160 @@ function TalentLayerIdForm() {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
       {({ isSubmitting, values }) => (
-        <Form className='border border-gray-300 p-4'>
-          <p className='mb-4'>Mint My ID 🏎️</p>
-          <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row drop-shadow-lg rounded'>
-            <div className='sm:px-6 flex flex-row items-center gap-2'>
-              <Field
-                type='text'
-                className='text-gray-500 py-2 focus:ring-0 outline-none text-sm border-0 rounded-xl h-[40px]'
-                placeholder='Choose your handle'
-                id='handle'
-                name='handle'
-                required
-              />
-            </div>
-            <div className='flex items-center'>
-              {values.handle && chainId != NetworkEnum.IEXEC && (
-                <HandlePrice handle={values.handle} />
-              )}
-              <div>
-                <div className='sm:pl-2 sm:pr-4 sm:space-x-4 relative'>
-                  <HelpPopover>
-                    <h3 className='font-semibold text-white dark:text-white'>
-                      What is a TalentLayerID?
-                    </h3>
-                    <p>
-                      AnonID is a work identity that allows ownership and growth of reputation
-                      across many gig marketplaces. Anon IDs are ERC-721 NFTs that live inside
-                      crypto wallets; this means that reputation is self-custodied by the wallet
-                      owner and lives separately from integrated platforms.
-                    </p>
-                    <h3 className='font-semibold text-white dark:text-white'>
-                      What is the handle?
-                    </h3>
-                    <p>
-                      Your Anon ID Handle is a unique string of characters and numbers that you can
-                      choose when you create your Anon ID. This handle is how others can search for
-                      your reputation. You can have a maximum of 10 characters in your Anon ID.
-                    </p>
-                    <a
-                      target='_blank'
-                      href='https://docs.talentlayer.org/basics/elements/what-is-talentlayer-id'
-                      className='flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700'>
-                      Read more{' '}
-                      <svg
-                        className='w-4 h-4 ml-1'
-                        aria-hidden='true'
-                        fill='currentColor'
-                        viewBox='0 0 20 20'
-                        xmlns='http://www.w3.org/2000/svg'>
-                        <path
-                          fillRule='evenodd'
-                          d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-                          clipRule='evenodd'></path>
-                      </svg>
-                    </a>
-                  </HelpPopover>
+        <Form className='p-10'>
+          <div className='bg-trorange p-10'>
+            <p className='mb-4'>Mint My ID 🏎️</p>
+            <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row rounded bg-trorange'>
+              <div className='sm:px-6 flex flex-row items-center gap-2'>
+                <Field
+                  type='text'
+                  className='text-gray-500 py-2 focus:ring-0 outline-none text-sm border-0 rounded-xl h-[40px]'
+                  placeholder='Choose your handle'
+                  id='handle'
+                  name='handle'
+                  required
+                />
+              </div>
+              <div className='flex items-center'>
+                {values.handle && chainId != NetworkEnum.IEXEC && (
+                  <HandlePrice handle={values.handle} />
+                )}
+                <div>
+                  <div className='sm:pl-2 sm:pr-4 sm:space-x-4 relative'>
+                    <HelpPopover>
+                      <h3 className='font-semibold text-white dark:text-white'>
+                        What is a TalentLayerID?
+                      </h3>
+                      <p>
+                        AnonID is a work identity that allows ownership and growth of reputation
+                        across many gig marketplaces. Anon IDs are ERC-721 NFTs that live inside
+                        crypto wallets; this means that reputation is self-custodied by the wallet
+                        owner and lives separately from integrated platforms.
+                      </p>
+                      <h3 className='font-semibold text-white dark:text-white'>
+                        What is the handle?
+                      </h3>
+                      <p>
+                        Your Anon ID Handle is a unique string of characters and numbers that you
+                        can choose when you create your Anon ID. This handle is how others can
+                        search for your reputation. You can have a maximum of 10 characters in your
+                        Anon ID.
+                      </p>
+                      <a
+                        target='_blank'
+                        href='https://docs.talentlayer.org/basics/elements/what-is-talentlayer-id'
+                        className='flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700'>
+                        Read more{' '}
+                        <svg
+                          className='w-4 h-4 ml-1'
+                          aria-hidden='true'
+                          fill='currentColor'
+                          viewBox='0 0 20 20'
+                          xmlns='http://www.w3.org/2000/svg'>
+                          <path
+                            fillRule='evenodd'
+                            d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
+                            clipRule='evenodd'></path>
+                        </svg>
+                      </a>
+                    </HelpPopover>
+                  </div>
                 </div>
               </div>
             </div>
+            <span className='label-text text-red-500 mt-2'>
+              <ErrorMessage name='handle' />
+            </span>
+            <p className=' bg-trorange'>
+              Your Racer ID is your unique tag in the Talent Layer universe. Think of it as your
+              handle on the digital raceway – make it catchy, make it clever, make it you.
+            </p>
           </div>
-          <span className='label-text text-red-500 mt-2'>
-            <ErrorMessage name='handle' />
-          </span>
-          <p className='mb-4 border-gray-700'>
-            Your Racer ID is your unique tag in the Talent Layer universe. Think of it as your
-            handle on the digital raceway – make it catchy, make it clever, make it you.
-          </p>
-          <div className='border border-gray-300 mb-4'></div>
-          <p className='mb-4'>Secure Your Inbox on the Track 🚦</p>
-          <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row drop-shadow-lg rounded'>
-            <div className='sm:px-6 flex flex-row items-center gap-2'>
-              <Field
-                type='text'
-                className='text-gray-500 py-2 focus:ring-0 outline-none text-sm border-0 rounded-xl h-[40px]'
-                placeholder='Type your email address...'
-                id='email'
-                name='email'
-                required
-              />
+          <div className='bg-trblue p-10'>
+            <p>Secure Your Inbox on the Track 🚦</p>
+            <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row drop-shadow-lg rounded'>
+              <div className='sm:px-6 flex flex-row items-center gap-2'>
+                <Field
+                  type='text'
+                  className='text-gray-500 py-2 focus:ring-0 outline-none text-sm border-0 rounded-xl h-[40px]'
+                  placeholder='Type your email address...'
+                  id='email'
+                  name='email'
+                  required
+                />
+              </div>
+            </div>
+            <p className='mb-8'>
+              Your email remains private always. With iEXEC's privacy shield, you'll safely receive
+              ads and surveys directly, no exposure needed—think of it as your invisible inbox.
+            </p>
+            <p className='mb-8'>
+              I consent to receive invites via Talent Layer, keeping my email confidential for:
+            </p>
+            <div className='container mx-auto mb-8'>
+              {options.map((option, index) => {
+                return (
+                  <div key={index} className='flex items-center mb-4'>
+                    <input
+                      type='checkbox'
+                      className='form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out'
+                      id={`optionCheckbox-${index}`}
+                      checked={selectedOptions.includes(option)}
+                      onChange={() => toggleOption(option)}
+                    />
+                    <label
+                      htmlFor={`optionCheckbox-${index}`}
+                      className='ml-2 text-sm text-white-700'>
+                      {option}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </div>
-
-          <p className='mb-8'>
-            Your email remains private always. With iEXEC's privacy shield, you'll safely receive
-            ads and surveys directly, no exposure needed—think of it as your invisible inbox.
-          </p>
-          <p className='mb-8'>
-            I consent to receive invites via Talent Layer, keeping my email confidential for:
-          </p>
-          <div className='container mx-auto mb-8'>
-            {options.map((option, index) => {
-              return (
-                <div key={index} className='flex items-center mb-4'>
-                  <input
-                    type='checkbox'
-                    className='form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out'
-                    id={`optionCheckbox-${index}`}
-                    checked={selectedOptions.includes(option)}
-                    onChange={() => toggleOption(option)}
-                  />
-                  <label
-                    htmlFor={`optionCheckbox-${index}`}
-                    className='ml-2 text-sm text-white-700'>
-                    {option}
-                  </label>
-                </div>
-              );
-            })}
+          <div className='bg-white p-10'>
+            <p className='mb-4 text-xl text-black'>Set your interests 💨</p>
+            <p className='mb-4  text-black'>category: Web3</p>
+            <div className='flex flex-wrap gap-2 mb-4'>
+              {web3Tags.map((tag, index) => {
+                return (
+                  <div
+                    key={index}
+                    onClick={() => toggleTag(tag)}
+                    className={`p-2 rounded-full cursor-pointer ${
+                      selectedTags.includes(tag)
+                        ? '#0048B2 text-white'
+                        : 'bg-gray-300 text-gray-700'
+                    }`}>
+                    {tag}
+                  </div>
+                );
+              })}
+            </div>
+            <p className='mb-4  text-black'>category: Networks</p>
+            <div className='flex flex-wrap gap-2 mb-4'>
+              {networkTags.map((tag, index) => {
+                return (
+                  <div
+                    key={index}
+                    onClick={() => toggleTag(tag)}
+                    className={`p-2 rounded-full cursor-pointer ${
+                      selectedTags.includes(tag)
+                        ? '#0048B2 text-white'
+                        : 'bg-gray-300 text-gray-700'
+                    }`}>
+                    {tag}
+                  </div>
+                );
+              })}
+            </div>
+            <div className='flex py-4 px-4 mb-2 sm:px-0 justify-center items-center flex-row drop-shadow-lg rounded'>
+              <div className='sm:px-6 flex flex-row items-center gap-2'></div>
+            </div>
           </div>
-          <div className='border border-gray-300 mb-8'></div>
-          <p className='mb-4'>Set your interests 💨</p>
-          <p className='mb-4'>category: Web3</p>
-          <div className='flex flex-wrap gap-2 mb-4'>
-            {web3Tags.map((tag, index) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() => toggleTag(tag)}
-                  className={`p-2 rounded-full cursor-pointer ${
-                    selectedTags.includes(tag) ? '#0048B2 text-white' : 'bg-gray-300 text-gray-700'
-                  }`}>
-                  {tag}
-                </div>
-              );
-            })}
+          <div className='flex flex-row gap-4 justify-end items-center mt-4'>
+            <SubmitButton isSubmitting={isSubmitting} />
           </div>
-          <p className='mb-4'>category: Networks</p>
-          <div className='flex flex-wrap gap-2 mb-4'>
-            {networkTags.map((tag, index) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() => toggleTag(tag)}
-                  className={`p-2 rounded-full cursor-pointer ${
-                    selectedTags.includes(tag) ? '#0048B2 text-white' : 'bg-gray-300 text-gray-700'
-                  }`}>
-                  {tag}
-                </div>
-              );
-            })}
-          </div>
-          <div className='flex py-4 px-4 mb-2 sm:px-0 justify-center items-center flex-row drop-shadow-lg rounded'>
-            <div className='sm:px-6 flex flex-row items-center gap-2'></div>
-          </div>
-          <SubmitButton isSubmitting={isSubmitting} />
         </Form>
       )}
     </Formik>

@@ -19,7 +19,7 @@ function Dashboard() {
   }
 
   return (
-    <div className='max-w-7xl mx-auto text-gray-200 sm:px-4 lg:px-0'>
+    <div className='max-w-7xl mx-auto text-gray-200 sm:px-4 lg:px-0 bg-black'>
       <div className='-mx-6 -mt-6 sm:mx-0 sm:mt-0'>
         <div className='flex py-2 px-6 sm:px-0 items-center border-b w-full border-gray-700 mb-8'>
           <p className='text-2xl font-medium flex-1'>

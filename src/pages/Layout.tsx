@@ -21,7 +21,7 @@ function Layout({ children, className }: ContainerProps) {
   if (router.asPath.includes('dashboard') || router.asPath.includes('admin')) {
     return (
       <>
-        <div className={className + ' dashboard pb-[110px]'}>
+        <div className={className + ' dashboard pb-[110px] bg-black'}>
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog as='div' className='relative z-40 md:hidden' onClose={setSidebarOpen}>
               <Transition.Child
@@ -78,9 +78,9 @@ function Layout({ children, className }: ContainerProps) {
             </Dialog>
           </Transition.Root>
 
-          <div className='hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col border-r border-gray-700'>
+          <div className='hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col border-r border-gray-700 bg-trbrown'>
             <div className='flex flex-grow flex-col overflow-y-auto  pt-5'>
-              <div className='flex flex-shrink-0 items-center px-6'>
+              <div className='flex flex-shrink-0 items-center bg-trbrown px-6'>
                 <Logo />
               </div>
               <div className='mt-8 flex flex-1 flex-col justify-between'>
