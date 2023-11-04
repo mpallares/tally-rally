@@ -1,14 +1,15 @@
-import { useContext } from 'react';
-import { useWalletClient } from 'wagmi';
+import { useContext, useEffect, useState } from 'react';
+import { useWalletClient, useBalance, useContractWrite } from 'wagmi';
 import Steps from '../../../components/Steps';
 import TalentLayerContext from '../../../context/talentLayer';
 import { useChainId } from '../../../hooks/useChainId';
-import ConversationList from '../../../modules/Messaging/components/ConversationList';
-import SearchModal from '../../../modules/Messaging/components/SearchModal';
-import ShareModal from '../../../modules/Messaging/components/ShareModal';
 import { XmtpContext } from '../../../modules/Messaging/context/XmtpContext';
 import useStreamConversations from '../../../modules/Messaging/hooks/useStreamConversations';
 import Image from 'next/image';
+import { useConfig } from '../../../hooks/useConfig';
+import Loading from '../../../components/Loading';
+import WaitingForApproval from '../../../components/WaitingForApproval';
+import WaitingForPlay from '../../../components/WaitingForPlay';
 
 function MessagingIndex() {
   const chainId = useChainId();
@@ -16,8 +17,10 @@ function MessagingIndex() {
   const { data: walletClient } = useWalletClient({
     chainId,
   });
+  const [raceState, setRaceState] = useState('init'); // allowance | play
   const { providerState } = useContext(XmtpContext);
-
+  const config = useConfig();
+  const [balance, setBalance] = useState(0);
   // Listens to new conversations ? ==> Yes, & sets them in "xmtp context". Stream stops "onDestroy"
   useStreamConversations();
 
@@ -26,6 +29,43 @@ function MessagingIndex() {
       await providerState.initClient();
     }
   };
+
+  const onEnterRaceClick = () => {
+    // TODO: checking allowance here, before submitting transaction
+    setRaceState('approve');
+  };
+
+  // useEffect(() => {
+  //   if(raceState === 'allowance') {
+  //     const { data, isError, isLoading, error } = useContractWrite({
+  //       address: config.contracts.tallyRallyCombined,
+  //       abi: TallyRallyCombined.abi,
+  //       functionName: 'approve',
+  //       args: [config.contracts.tallyRallyCombined],
+  //     });
+
+  //   } else if(raceState === 'play') {
+  //     // TODO: make cars animated
+
+  //   }
+  // }, [raceState]);
+
+  // const { data, isError, isLoading, error } = useContractRead({
+  //   address: config.contracts.tallyRallyCombined,
+  //   abi: TallyRallyCombined.abi,
+  //   functionName: 'balanceOf',
+  //   args: [account?.address],
+  // });
+
+  // another approach
+  const { data, isError, isLoading, error } = useBalance({
+    address: config.contracts.tallyRallyCombined
+  });
+
+  useEffect(() => {
+    !isLoading && setBalance(data);
+
+  }, [data]);
 
   if (!user) {
     return <Steps />;
@@ -46,10 +86,12 @@ function MessagingIndex() {
           />
         </div>
         <div className=''>
-          <div className="w-[143px] h-[45px] px-4 py-1.5 border border-lime-400 justify-center items-center gap-2.5 inline-flex">
-            <div className="text-center text-white text-[22px] font-bold font-['Kanit']">10 MATIC</div>
+          <div className="w-[163px] h-[45px] px-4 py-1.5 border border-lime-400 justify-center items-center gap-2.5 inline-flex">
+            <div className="text-center text-white text-[22px] font-bold font-['Kanit']">
+              {isLoading ? <Loading /> :" "+balance?.formatted+" MATIC"}
+            </div>
           </div>
-          <div className="w-[123px] text-center text-lime-400 text-sm font-normal font-['Kanit'] leading-tight">Play to win</div>
+          <div className="ml-4 w-[123px] text-center text-lime-400 text-sm font-normal font-['Kanit'] leading-tight">Play to win</div>
         </div>
       </div>
       {/* Cars line */}
@@ -87,9 +129,14 @@ function MessagingIndex() {
       {/* sub track */}
       <div className='flex justify-between'>
         <div>You're just 1 $MAYBE token away from the chance to win big! </div>
-        <div className="w-[253px] h-[47px] px-[35px] py-2.5 bg-lime-400 rounded-[60px] border justify-center items-center gap-2.5 inline-flex">
+
+        {raceState=='init' && <button className="w-[253px] h-[47px] px-[35px] py-2.5 bg-lime-400 rounded-[60px] border justify-center items-center gap-2.5 inline-flex" onClick={onEnterRaceClick}>
           <div className="text-center text-blue-800 text-lg font-black font-['Kanit'] uppercase">ENTER race </div>
-        </div>
+        </button>}
+        {raceState=='approve' && <WaitingForApproval setRaceState={setRaceState} />}
+        {raceState=='play' && <WaitingForPlay setRaceState={setRaceState} />}
+        {raceState=='won' && 'YOU WON!'}
+        {raceState=='lose' && 'YOU DIDN\'T MAKE IT!'}
       </div>
       {/* Table */}
       <div>
