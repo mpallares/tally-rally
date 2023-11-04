@@ -15,11 +15,11 @@ function UserItem({ user }: { user: IUser }) {
   }
 
   return (
-    <div className='flex flex-row gap-2 rounded-xl p-4 border border-gray-700 text-white bg-endnight'>
+    <div className='flex flex-row gap-2 p-4 border  text-trblue bg-white'>
       <div className='flex flex-col items-top justify-between w-full'>
         <div className='flex flex-col justify-start items-start gap-4'>
           <div className='flex items-center justify-start mb-4'>
-            <img
+            {/* <img
               src={
                 user?.description?.image_url
                   ? user?.description?.image_url
@@ -29,7 +29,7 @@ function UserItem({ user }: { user: IUser }) {
               width={50}
               height={50}
               alt='default avatar'
-            />
+            /> */}
             <div className='flex flex-col'>
               <p className='text-gray-100 font-medium break-all'>{user.handle}</p>
               <p className='text-xs text-gray-500'>{userDescription?.title || '-'}</p>
