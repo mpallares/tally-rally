@@ -1,29 +1,22 @@
-import { processRequest } from '../../../utils/graphql';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getUsersBySkillsRequest } from './get-users-by-skills-request';
 
-export const getUsersBySkillsRequest = (
-  chainId: number,
-  numberPerPage?: number,
-  offset?: number,
-  searchQuery?: string,
-): Promise<any> => {
-  const pagination = numberPerPage ? 'first: ' + numberPerPage + ', skip: ' + offset : '';
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { chainId, searchQuery } = req.query;
 
-  let query = `
-    query {
-        users(where: { description_: { skills_raw_contains: "${searchQuery}" } },
-          first: ${numberPerPage}, orderBy: createdAt orderDirection: desc ${pagination}) {
-            id
-            handle
-            address
-            description {
-                skills_raw
-            }
-            platform {
-                id
-                name
-            }
-        }
-    }`;
+  let numberPerPage = 1000;
+  let offset = 0;
 
-  return processRequest(chainId, query);
-};
+  let response = await getUsersBySkillsRequest(
+    parseInt(chainId as string),
+    numberPerPage,
+    offset,
+    searchQuery as string,
+  );
+
+  if (response) {
+    return res.status(200).json(response.data);
+  }
+
+  return res.status(500);
+}
