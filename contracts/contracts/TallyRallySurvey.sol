@@ -56,4 +56,14 @@ contract TallyRallySurvey {
 
     emit SurveyAnswered(survey.id, survey.dataBuyer, survey.surveyType, survey.content, answerCid);
   }
+
+  function getSurveys() public view returns (Survey[] memory) {
+    Survey[] memory allSurveys = new Survey[](currentSurveyId);
+
+    for (uint256 i = 0; i < currentSurveyId; i++) {
+      allSurveys[i] = surveys[i];
+    }
+
+    return allSurveys;
+  }
 }

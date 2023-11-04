@@ -34,7 +34,7 @@ contract TallyRally is TallyRallyLottery, TallyRallySurvey {
     tallyRallySurvey.answerSurvey(id, answerCid);
 
     // mint one token to the sender
-    tallyRallyLottery.mint(msg.sender, 1);
+    // tallyRallyLottery.mint(msg.sender, 1);
   }
 
   function playLottery() public {
