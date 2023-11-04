@@ -1,4 +1,4 @@
-import { useContractWrite, useWalletClient } from 'wagmi';
+import { useContractWrite, useWalletClient, useContractEvent } from 'wagmi';
 import { useConfig } from '../hooks/useConfig';
 import TallyRallyCombined from '../contracts/ABI/TallyRallyCombined.json';
 import { useEffect } from 'react';
@@ -14,6 +14,15 @@ function WaitingForPlay({setRaceState}: WaitingForPlayProps) {
     const { data: walletClient } = useWalletClient({
         chainId,
     });
+
+    useContractEvent({
+        address: config.contracts.tallyRallyCombined,
+        abi: TallyRallyCombined.abi,
+        eventName: 'LotteryWin',
+        listener(log) {
+          setRaceState('won');
+        },
+      })
     
     useEffect(() => {
         walletClient.writeContract({
@@ -22,6 +31,9 @@ function WaitingForPlay({setRaceState}: WaitingForPlayProps) {
             functionName: 'playLottery',
             account: walletClient.address
         }).then((tx) => {
+            setTimeout(() => {
+                setRaceState('lose')
+            }, 45000)
             console.log("tx - play",tx);
             setRaceState('won');
             // setRaceState('lose');
