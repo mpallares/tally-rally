@@ -4,14 +4,10 @@ pragma solidity ^0.8.20;
 import {ERC20} from '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
 contract TallyRallyLottery is ERC20 {
-  address public owner;
-
   event LotteryEntry(address indexed player);
   event LotteryWin(address indexed winner, uint256 amount);
 
-  constructor() ERC20('MAYBE', 'MAYB') {
-    owner = msg.sender;
-  }
+  constructor() ERC20('MAYBE', 'MAYB') {}
 
   function play() external {
     uint256 balance = balanceOf(msg.sender);
