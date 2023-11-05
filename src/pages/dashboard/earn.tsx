@@ -3,6 +3,7 @@ import tallyrallyContract from '../../contracts/ABI/TallyRallyCombined.json';
 import { useEffect, useState } from 'react';
 import { useAccount, useContractRead } from 'wagmi';
 import SurveyItem from '../../components/SurveyItem';
+import { useConfig } from '../../hooks/useConfig';
 
 function Talents() {
   const router = useRouter();
@@ -11,10 +12,11 @@ function Talents() {
   const { address } = useAccount();
 
   const [surveys, setSurveys] = useState([]);
+  const config = useConfig();
 
   const { refetch, data: surveyResult } = useContractRead({
     abi: tallyrallyContract.abi,
-    address: '0xd05D1366471b120D30683eBBe1496191Af7E780d',
+    address: config.contracts.tallyRallyCombined,
     functionName: 'getSurveys',
   });
 

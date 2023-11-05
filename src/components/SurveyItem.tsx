@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { useContractWrite } from 'wagmi';
 import tallyrallyContract from '../contracts/ABI/TallyRallyCombined.json';
 import Loading from './Loading';
+import { useConfig } from '../hooks/useConfig';
 
 function SurveyItem({ survey }: any) {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const config = useConfig();
 
   function onSelectAnswer(answer: string) {
     setSelectedAnswer(answer);
@@ -13,7 +16,7 @@ function SurveyItem({ survey }: any) {
 
   const { writeAsync } = useContractWrite({
     abi: tallyrallyContract.abi,
-    address: '0xd05D1366471b120D30683eBBe1496191Af7E780d',
+    address: config.contracts.tallyRallyCombined,
     functionName: 'answerSurveyMintTokenForOwner',
     args: [survey.id, selectedAnswer],
   });
