@@ -75,7 +75,7 @@ function MessagingIndex() {
   }
 
   return (
-    <div className='text-gray-900 sm:px-4 lg:px-0 h-full text-white'>
+    <div className='sm:px-4 lg:px-0 h-full text-white'>
       {/* bg-[#070F12] */}
 
       {/* Let's rally line */}

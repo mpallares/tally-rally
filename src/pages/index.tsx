@@ -6,7 +6,7 @@ function Home() {
 
   return (
     <div className='bg-black text-black scroll-behavior: auto'>
-      <header className='navbar fixed top-0 left-0 z-50 w-full border-stroke bg-black duration-300'>
+      <header className='navbar fixed top-0 left-0 z-50 w-full border-stroke bg-white duration-300'>
         <div className='container relative lg:max-w-[1305px] lg:px-10'>
           <div className='flex items-center justify-between'>
             <div className='block py-4 lg:py-0'>
@@ -25,7 +25,7 @@ function Home() {
             </button>
 
             <div
-              className={`menu-wrapper relative ${isOpen ? '' : 'hidden'} justify-between lg:flex`}>
+              className={`menu-wrapper relative ${isOpen ? '' : 'hidden'} w-full justify-between lg:flex`}>
               <button
                 onClick={() => setIsOpen(false)}
                 className='navbarClose fixed top-10 right-10 z-[9999] flex h-10 w-10 flex-col items-center justify-center font-bold lg:hidden'
@@ -34,10 +34,10 @@ function Home() {
                 <span className='block h-[2px] w-7 rotate-45 bg-black '></span>
                 <span className='-mt-[2px] block h-[2px] w-7 -rotate-45 bg-black '></span>
               </button>
-
-              <nav className='fixed top-0 left-0 z-[999] flex h-screen w-full items-center justify-center bg-white bg-opacity-95 text-center backdrop-blur-sm lg:static lg:h-auto lg:w-max lg:bg-transparent lg:backdrop-blur-none '>
-                <ul className='items-center space-y-3 lg:flex lg:space-x-8 lg:space-y-0 xl:space-x-10'>
-                  <li className='menu-item'>
+              <div className='flex-1'></div>
+              <nav className='fixed top-0 right-0 z-[999] flex h-screen w-full items-center justify-center pr-10  bg-opacity-95 text-center backdrop-blur-sm lg:static lg:h-auto lg:w-max lg:backdrop-blur-none '>
+                <ul className='w-full items-end space-y-3 lg:flex lg:space-x-8 lg:space-y-0 xl:space-x-10'>
+                  {/* <li className='menu-item'>
                     <a
                       onClick={() => setIsOpen(false)}
                       href='#features'
@@ -52,23 +52,23 @@ function Home() {
                       className='menu-scroll inline-flex items-center text-base font-medium text-white hover:text-trgreen   lg:py-7'>
                       About
                     </a>
-                  </li>
+                  </li> */}
                   <li className='menu-item'>
                     <a
                       onClick={() => setIsOpen(false)}
                       href='#work-process'
-                      className='menu-scroll inline-flex items-center text-base font-medium text-white hover:text-trgreen   lg:py-7'>
+                      className='menu-scroll inline-flex items-center text-base font-medium text-black hover:text-trgreen   lg:py-7'>
                       How It Works
                     </a>
                   </li>
-                  <li className='menu-item'>
+                  {/* <li className='menu-item'>
                     <a
                       onClick={() => setIsOpen(false)}
                       href='#faq'
                       className='menu-scroll inline-flex items-center text-base font-medium text-white hover:text-trgreen   lg:py-7'>
                       Support
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </nav>
             </div>
@@ -76,7 +76,7 @@ function Home() {
             <div className='mr-[60px] flex items-center justify-end lg:mr-0'>
               <a
                 href='/dashboard/earn'
-                className='rounded-md bg-redpraha py-[6px] px-[12px] xl:py-[10px] xl:px-[30px] text-base font-medium text-white hover:bg-opacity-90  bg-trgreen py-[14px] px-[30px] text-trblue hover:bg-opacity-90'>
+                className='italic uppercase font-black rounded-[26px] text-base  bg-trgreen py-[14px] px-[30px] text-trblue hover:bg-opacity-90'>
                 Dapp
               </a>
             </div>
@@ -86,80 +86,62 @@ function Home() {
 
       <main>
         <section id='home' className='pt-[165px]'>
-          <div className='container lg:max-w-[1305px] lg:px-10'>
-            <div className='-mx-4 flex flex-wrap items-center'>
-              <div className='w-full px-4 lg:w-7/12'>
-                <div className='wow fadeInUp mb-12 lg:mb-0 lg:max-w-[570px]' data-wow-delay='.2s'>
-                  <h1 className='mb-6 text-3xl font-bold leading-tight text-trblue  sm:text-[40px] md:text-[50px] lg:text-[42px] xl:text-[50px]'>
-                    Earn, Race, Repeat –
-                    <span className='inline bg-redpraha bg-clip-text text-transparent text-trgreen mx-2'>
-                      Your Clicks Have Never Been This{' '}
-                    </span>
-                    Thrilling!
+
+              <div className='w-full flex flex-col items-center justify-start px-20'>
+                <div className='w-full flex flex-row items-start justify-start flex-wrap'>
+                  <h1 className='max-w-[520px] mb-12 text-[70px] leading-[65px] uppercase font-black text-white sm:text-[80px] md:text-[80px] md:leading-[80px] lg:text-[110px] xl:text-[110px] lg:leading-[100px]'>
+                    Earn, Race, Repeat.
                   </h1>
-                  <p className='mb-10 max-w-[475px] text-base leading-relaxed text-body text-white'>
+                  <p className='mb-10 max-w-[360px] text-[28px] leading-[38px] text-right mr-[50px] text-white font-bold italic'>
                     Tap into TallyRally, the playful platform where your views turn into velocity!
-                    Mint $MAYBE tokens by engaging with content, then rev up for a chance to win big
-                    in our thrilling token race. It's a dash for cash where your opinions and clicks
-                    can lead to a jackpot joyride!
+
+                  </p>
+                  <div className='flex max-w-[320px] flex-col items-end justify-center'>
+                  <p className='mb-10 flex-1 text-[18px] leading-[26px] text-white text-right font-light'>
+                  Mint $MAYBE tokens by engaging with content, then rev up for a chance to win big in our thrilling token race. It's a dash for cash where your opinions and clicks can lead to a jackpot joyride!
                   </p>
 
-                  {/* <div className='mr-[60px] flex items-center justify-end lg:mr-0'>
-                    <a
-                      href='/dashboard/earn'
-                      className='rounded-md bg-redpraha py-[6px] px-[12px] xl:py-[10px] xl:px-[30px] text-base font-medium text-white hover:bg-opacity-90'>
-                      Dapp
-                    </a>
-                  </div> */}
-
-                  <div className='flex flex-wrap items-center'>
                     <a
                       target='_blank'
                       href='/dashboard/earn'
-                      className='mr-6 mb-6 inline-flex h-[60px] items-center rounded-lg bg-trgreen py-[14px] px-[30px] text-trblue hover:bg-opacity-90'>
-                      <span>Start the race!</span>
+                      className='w-full text-center text-[18px] uppercase italic font-black px-10 py-2 rounded-[22px] text-trgreen bg-trblue'>
+                      Ready, Set, Rally!
                     </a>
+                    </div>
 
-                    {/* <a
-                      href='javascript:void(0)'
-                      className='glightbox mb-6 inline-flex items-center py-4 text-black hover:text-primary '>
-                      <span className='mr-[12px] flex h-[56px] w-[56px] items-center justify-center rounded-full border-2 border-current'>
-                        <svg
-                          width='14'
-                          height='16'
-                          viewBox='0 0 14 16'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'>
-                          <path
-                            d='M13.5 7.06367C14.1667 7.44857 14.1667 8.41082 13.5 8.79572L1.5 15.7239C0.833334 16.1088 -3.3649e-08 15.6277 0 14.8579L6.05683e-07 1.00149C6.39332e-07 0.231693 0.833334 -0.249434 1.5 0.135466L13.5 7.06367Z'
-                            fill='currentColor'
-                          />
-                        </svg>
-                      </span>
-                      <span className='text-base font-medium'>
-                        <span className='block text-sm'> Watch Demo </span>
-                        See how it works
-                      </span>
-                    </a> */}
-                  </div>
                 </div>
               </div>
+              <div className='relative mt-10 min-h-[300px] ml-12 px-12'>
+              <Image
+                src={'/images/RallyTrack.svg'}
+                fill
+                // height={200}
+                objectFit='cover'
+                alt='Rally Track'
+              />
 
-              <div className='w-full px-4 lg:w-5/12'>
-                <div
-                  className='wow fadeInUp relative z-10 mx-auto w-full max-w-[530px] pt-8 lg:mr-0'
-                  data-wow-delay='.3s'>
-                  <Image
-                    width={400}
-                    height={300}
-                    src='/tally-logo-desktop.svg'
-                    alt='hero image'
-                    // className='mx-auto max-w-full'
-                  />
-                </div>
-              </div>
+              <Image
+                src={'/images/Car1.svg'}
+                width={80}
+                height={36}
+                alt='Car 1'
+                className={'py-4 mr-[100%] absolute bottom-[80%] transition ease-out duration-[55s] ml-[2]'}
+              />
+              <Image
+                src={'/images/Car2.svg'}
+                width={80}
+                height={36}
+                alt='Car 2'
+                className={'py-4 z-2 mr-[100%] absolute bottom-[45%] transition ease-in duration-[55s]'}
+              />
+              <Image
+                src={'/images/Car3.svg'}
+                width={80}
+                height={36}
+                alt='Car 3'
+                className={'py-4 z-2 mr-[100%] absolute bottom-[10%] transition ease-in-out duration-[55s]'}
+              />
             </div>
-          </div>
         </section>
 
         <section id='work-process' className='relative z-10 pt-[110px]'>

@@ -211,26 +211,23 @@ function TalentLayerIdForm() {
         {({ isSubmitting, values }) => (
           <Form>
             <div className='bg-trorange p-10'>
-              <p className='mb-4'>Mint My ID 🏎️</p>
-              <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row rounded bg-trorange'>
-                <div className='sm:px-6 flex flex-row items-center gap-2'>
+              <p className='mb-4 text-[24px] font-bold italic'>Mint My ID 🏎️</p>
+              <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row rounded '>
                   <Field
                     type='text'
-                    className='text-gray-500 py-2 focus:ring-0 outline-none text-sm border-0 rounded-xl h-[40px]'
+                    className='text-black flex-1 max-w-[50%] py-2 focus:ring-0 outline-none text-md rounded-sm h-[40px] border-0  bg-white'
                     placeholder='Choose your handle'
                     id='handle'
                     name='handle'
                     required
                   />
-                </div>
                 <div className='flex items-center'>
                   {values.handle && chainId != NetworkEnum.IEXEC && (
                     <HandlePrice handle={values.handle} />
                   )}
-                  <div>
-                    <div className='sm:pl-2 sm:pr-4 sm:space-x-4 relative'>
+                    <div className=' sm:pl-2 sm:pr-4 sm:space-x-4 relative'>
                       <HelpPopover>
-                        <h3 className='font-semibold text-white dark:text-white'>
+                        <h3 className='font-semibold text-black dark:text-black'>
                           What is a TalentLayerID?
                         </h3>
                         <p>
@@ -267,13 +264,12 @@ function TalentLayerIdForm() {
                         </a>
                       </HelpPopover>
                     </div>
-                  </div>
                 </div>
               </div>
-              <span className='label-text text-red-500 mt-2'>
+              <div className='label-text text-white mt-2 mb-6'>
                 <ErrorMessage name='handle' />
-              </span>
-              <p className=' bg-trorange'>
+              </div>
+              <p className=' bg-trorange max-w-[50%]'>
                 Your Racer ID is your unique tag in the Talent Layer universe. Think of it as your
                 handle on the digital raceway – make it catchy, make it clever, make it you.
               </p>
@@ -290,19 +286,17 @@ function TalentLayerIdForm() {
         validationSchema={validationSchemaEmail}>
         {({ isSubmitting, values }) => (
           <Form>
-            <div className='bg-trblue p-10'>
-              <p>Secure Your Inbox on the Track 🚦</p>
-              <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row drop-shadow-lg rounded'>
-                <div className='sm:px-6 flex flex-row items-center gap-2'>
+            <div className='bg-trblue p-10 my-4'>
+              <p className='mb-4 text-[24px] font-bold italic'>Secure Your Inbox on the Track 🚦</p>
+              <div className='flex py-4 px-4 mb-2 sm:px-0 items-center flex-row rounded '>
                   <Field
                     type='text'
-                    className='text-gray-500 py-2 focus:ring-0 outline-none text-sm border-0 rounded-xl h-[40px]'
+                    className='text-black flex-1 max-w-[50%] py-2 focus:ring-0 outline-none text-md rounded-sm h-[40px] border-0  bg-white'
                     placeholder='Type your email address...'
                     id='email'
                     name='email'
                     required
                   />
-                </div>
               </div>
               <p className='mb-8'>
                 Your email remains private always. With iEXEC's privacy shield, you'll safely
@@ -346,7 +340,7 @@ function TalentLayerIdForm() {
         {({ isSubmitting, values }) => (
           <Form>
             <div className='bg-white p-10'>
-              <p className='mb-4 text-xl text-black'>Set your interests 💨</p>
+              <p className='mb-4 text-black text-[24px] font-bold italic'>Set your interests 💨</p>
               <p className='mb-4  text-black'>category: Web3</p>
               <div className='flex flex-wrap gap-2 mb-4'>
                 {web3Tags.map((tag, index) => {
@@ -354,10 +348,10 @@ function TalentLayerIdForm() {
                     <div
                       key={index}
                       onClick={() => toggleTag(tag)}
-                      className={`p-2 rounded-full cursor-pointer ${
+                      className={`text-[18px] uppercase italic font-black px-10 py-2 rounded-[22px] cursor-pointer ${
                         selectedTags.includes(tag)
-                          ? '#0048B2 text-white'
-                          : 'bg-gray-300 text-gray-700'
+                          ? 'bg-trblue border-[1px] border-trblue text-white'
+                          : 'bg-white border-[1px] border-trblue text-trblue'
                       }`}>
                       {tag}
                     </div>
@@ -371,10 +365,10 @@ function TalentLayerIdForm() {
                     <div
                       key={index}
                       onClick={() => toggleTag(tag)}
-                      className={`p-2 rounded-full cursor-pointer ${
+                      className={`text-[18px] uppercase italic font-black px-10 py-2 rounded-[22px] cursor-pointer ${
                         selectedTags.includes(tag)
-                          ? '#0048B2 text-white'
-                          : 'bg-gray-300 text-gray-700'
+                        ? 'bg-trorange border-[1px] border-trorange text-white'
+                        : 'bg-white border-[1px] border-trorange text-trorange'
                       }`}>
                       {tag}
                     </div>

@@ -36,7 +36,7 @@ function SubmitButton({
           Loading...
         </button>
       ) : isConnected ? (
-        <button type='submit' className='grow px-5 py-2 rounded-xl bg-trgreen text-trblue'>
+        <button type='submit' className='grow text-[18px] uppercase italic font-black px-10 py-2 rounded-[22px] bg-trgreen text-trblue'>
           {label}
         </button>
       ) : (
