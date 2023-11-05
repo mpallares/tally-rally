@@ -61,12 +61,13 @@ contract TallyRallyCombined is ERC20 {
     // call TallyRallyLottery's playLottery function
 
     uint256 balance = this.balanceOf(msg.sender);
-    uint256 approvalAmount = this.allowance(msg.sender, address(this));
+    // uint256 approvalAmount = this.allowance(msg.sender, address(this));
 
     require(balance >= 1, 'Not enough tokens');
-    require(approvalAmount >= 1, 'No token spending approval');
+    // require(approvalAmount >= 1, 'No token spending approval');
 
     // burn the token
+    // ERC20(address(this)).transferFrom(msg.sender, address(0), 1);
     // require(ERC20(address(this)).transferFrom(msg.sender, address(0), 1), 'Transfer failed');
 
     // Emit an event that a player has entered

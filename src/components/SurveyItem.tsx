@@ -16,7 +16,7 @@ function SurveyItem({ survey }: any) {
 
   const { writeAsync } = useContractWrite({
     abi: tallyrallyContract.abi,
-    address: config.contracts.tallyRallyCombined,
+    address: config?.contracts.tallyRallyCombined,
     functionName: 'answerSurveyMintTokenForOwner',
     args: [survey.id, selectedAnswer],
   });
@@ -37,7 +37,9 @@ function SurveyItem({ survey }: any) {
 
   const { id, dataBuyer, surveyType, content, answerCids } = survey;
 
-  const surveyTypeFull = surveyType === 0 ? 'Advertisement' : 'Survey';
+  const isAd = surveyType === 0;
+
+  // const surveyTypeFull = isAd ? 'Advertisement' : 'Survey';
 
   return (
     <>
@@ -46,7 +48,11 @@ function SurveyItem({ survey }: any) {
           <div className='flex flex-col justify-start items-start gap-4'>
             <div className='flex items-center justify-start mb-4'>
               <div className='flex flex-col'>
-                <p className='text-trblue text-3xl text-xl break-all italic  mb-6'>{content}</p>
+                {isAd ? (
+                  <img src={content} alt={`advertisement-id`} />
+                ) : (
+                  <p className='text-trblue text-3xl text-xl break-all italic  mb-6'>{content}</p>
+                )}
                 {/* <p className='text-lg text-black'>{userDescription?.title || '-'}</p> */}
               </div>
             </div>
@@ -56,17 +62,21 @@ function SurveyItem({ survey }: any) {
             <div className='flex flex-col gap-4 items-center mb-4'>
               <button
                 className={`${
-                  selectedAnswer === 'yes' ? 'bg-trblue border-white text-white' : ''
+                  selectedAnswer === 'like' || selectedAnswer === 'yes'
+                    ? 'bg-trblue border-white text-white'
+                    : ''
                 } text-trblue-500 font-black border border-blue-500 hover:border-white hover:bg-trblue hover:text-white w-full px-6 py-3 rounded-full text-lg flex items-center justify-center transition-all`}
-                onClick={() => onSelectAnswer('yes')}>
-                Yes
+                onClick={() => onSelectAnswer(isAd ? 'like' : 'yes')}>
+                {isAd ? 'Like' : 'Yes'}
               </button>
               <button
                 className={`${
-                  selectedAnswer === 'no' ? 'bg-trblue border-white text-white' : ''
+                  selectedAnswer === "don't like" || selectedAnswer === 'no'
+                    ? 'bg-trblue border-white text-white'
+                    : ''
                 } text-trblue-500 border font-black border-blue-500 hover:border-white hover:bg-trblue hover:text-white w-full px-6 py-3 rounded-full text-lg flex items-center justify-center transition-all`}
-                onClick={() => onSelectAnswer('no')}>
-                No
+                onClick={() => onSelectAnswer(isAd ? "don't like" : 'no')}>
+                {isAd ? "Don't like" : 'No'}
               </button>
             </div>
           </div>

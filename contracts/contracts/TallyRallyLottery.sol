@@ -33,6 +33,6 @@ contract TallyRallyLottery is ERC20 {
   // WARNING: This is not secure and can be manipulated by miners
   // For a production contract, use a verifiably random function (VRF) like Chainlink VRF
   function random() private view returns (uint) {
-    return uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, msg.sender))) % 100;
+    return uint(keccak256(abi.encodePacked(block.prevrandao, block.timestamp, msg.sender))) % 100;
   }
 }

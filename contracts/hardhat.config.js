@@ -9,13 +9,7 @@ module.exports = {
     polygonMumbai: {
       chainId: 80001,
       url: 'https://rpc-mumbai.maticvigil.com',
-      accounts: {
-        mnemonic: 'test test test test test test test test test test test junk',
-        path: "m/44'/60'/0'/0",
-        initialIndex: 0,
-        count: 20,
-        passphrase: '',
-      },
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   etherscan: {
